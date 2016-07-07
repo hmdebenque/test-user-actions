@@ -1,4 +1,4 @@
-package org.talend.dataprep.transformation.api.action.metadata.text;
+package org.talend.dataprep.transformation.actions.text;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

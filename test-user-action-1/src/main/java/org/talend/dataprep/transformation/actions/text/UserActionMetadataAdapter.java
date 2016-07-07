@@ -1,4 +1,4 @@
-package org.talend.dataprep.transformation.api.action.metadata.text;
+package org.talend.dataprep.transformation.actions.text;
 
 import com.google.common.base.Charsets;
 import org.apache.commons.lang.StringUtils;
@@ -26,6 +26,14 @@ public abstract class UserActionMetadataAdapter implements ActionMetadata {
     private MessageSource messageSource;
 
     protected UserActionMetadataAdapter() {
+        initMessageSource();
+    }
+
+    protected UserActionMetadataAdapter(MessageSource messageSource) {
+        this.messageSource = messageSource;
+    }
+
+    private void initMessageSource() {
         ResourceBundleMessageSource resourceBundleMessageSource = new ResourceBundleMessageSource();
         resourceBundleMessageSource.setBasename(getActionCode());
         resourceBundleMessageSource.setFallbackToSystemLocale(false);

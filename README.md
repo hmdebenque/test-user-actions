@@ -1,5 +1,8 @@
 ## Rendre extensible le système des actions
 
+**Ce document regroupe des notes en vrac sur les moyens de rendre extensible
+le système des actions dans dataprep.**
+
 Cette tâche se décompose naturellement en plusieur étapes:
 
 1. Rationaliser l'implémentation des actions pour en ajouter
@@ -41,6 +44,13 @@ c'est dangeureux avec un implem externe.
 
 > actionContext.setActionStatus(ActionContext.ActionStatus.CANCELED);
 
+Il serait pratique de créer une annotation @DataprepAction pour remplacer
+le @Component et qui pourrait se charger de nommer les actions de facon unique.
+=> Cf les BeanPostProcessor
+
+Il faudra faire un projet dataprep-action-sdk qui contienne les classes
+de base des actions et qui aggrège toutes les dépendances disponibles
+dans l'installation de dataprep ou, tu du moins, leurs versions.
 
 #### Internationalisation
 Il faut aussi rationnaliser l'internationalisation des paramètres et des actions
@@ -91,7 +101,6 @@ Cette partie, dédiée à la base métier de dataprep contiendrait :
     - les outils de manipulation XLS
     - les outils de manipulation HTML
     - les outils de manipulation CSV
-    - 
 * Le package de gestion de la sécurité
 
 ### Créer un archétype maven

@@ -1,4 +1,4 @@
-package org.talend.dataprep.transformation.api.action.metadata.text;
+package org.talend.dataprep.transformation.actions.text2;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -7,7 +7,7 @@ import org.talend.dataprep.transformation.api.transformer.suggestion.rules.Basic
 
 import static org.talend.dataprep.transformation.api.transformer.suggestion.rules.GenericRule.GenericRuleBuilder.forActions;
 
-@Configuration
+//@Configuration
 public class UserActionSuggestion extends BasicRules {
 
     @Bean

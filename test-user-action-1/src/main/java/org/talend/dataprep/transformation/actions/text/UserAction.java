@@ -1,4 +1,4 @@
-package org.talend.dataprep.transformation.api.action.metadata.text;
+package org.talend.dataprep.transformation.actions.text;
 //  ============================================================================
 //
 //  Copyright (C) 2006-2016 Talend Inc. - www.talend.com
@@ -12,21 +12,19 @@ package org.talend.dataprep.transformation.api.action.metadata.text;
 //
 //  ============================================================================
 
+import com.google.common.base.Charsets;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.MessageSource;
 import org.springframework.context.support.ResourceBundleMessageSource;
 import org.springframework.stereotype.Component;
 import org.talend.dataprep.api.dataset.ColumnMetadata;
 import org.talend.dataprep.api.dataset.DataSetRow;
 import org.talend.dataprep.api.type.Type;
-import org.talend.dataprep.i18n.MessagesBundle;
 import org.talend.dataprep.parameters.Parameter;
 import org.talend.dataprep.parameters.ParameterType;
 import org.talend.dataprep.transformation.api.action.context.ActionContext;
 import org.talend.dataprep.transformation.api.action.metadata.category.ActionCategory;
-import org.talend.dataprep.transformation.api.action.metadata.common.ActionMetadata;
-import org.talend.dataprep.transformation.api.action.metadata.common.ActionMetadataAdapter;
 import org.talend.dataprep.transformation.api.action.metadata.common.ColumnAction;
 
 import java.util.EnumSet;
@@ -45,9 +43,22 @@ public class UserAction extends UserActionMetadataAdapter implements ColumnActio
 
     private static final Logger LOG = LoggerFactory.getLogger(UserAction.class);
 
-    protected static final String USER_ACTION_ACTION_NAME = "userDefinedAction"; //$NON-NLS-1$
+    protected static final String USER_ACTION_ACTION_NAME = "userDefinedAction1"; //$NON-NLS-1$
 
     private static final String APPENDIX_PARAM_NAME = "appendix_param";
+
+    public UserAction() {
+        super(initMessageSource());
+    }
+
+    private static MessageSource initMessageSource() {
+        ResourceBundleMessageSource resourceBundleMessageSource = new ResourceBundleMessageSource();
+        resourceBundleMessageSource.setBundleClassLoader(UserAction.class.getClassLoader());
+        resourceBundleMessageSource.setBasename("user_action");
+        resourceBundleMessageSource.setFallbackToSystemLocale(false);
+        resourceBundleMessageSource.setDefaultEncoding(Charsets.UTF_8.name());
+        return resourceBundleMessageSource;
+    }
 
     @Override
     public String getName() {
