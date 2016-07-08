@@ -17,6 +17,7 @@
         <module>test-user-action-1</module>
         <module>test-user-action-2</module>
         <module>test-actions</module>
+        <module>actions-base</module>
     </modules>
 
     <properties>

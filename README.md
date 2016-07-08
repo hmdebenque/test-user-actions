@@ -47,6 +47,22 @@ c'est dangeureux avec un implem externe.
 Il serait pratique de créer une annotation @DataprepAction pour remplacer
 le @Component et qui pourrait se charger de nommer les actions de facon unique.
 => Cf les BeanPostProcessor
+Remarque: implémenter l'interface d'action devrait être suffisant pour que l'action
+soit détectée et utiliser, une annotation serait redondante. Le problème
+est que [@Component] n'est pas héritable (voir [@Inherited]).
+
+Cela pose la question de l'intégration des actions supplémentaires:
+
+* Soit on ajoute leurs jars dans le dossier lib
+* Soit on a un dossier actions dans lib ou ailleurs qui contiendrait tous les jars
+  des actions => doit-on découper les actions en jars séparés pour permmettre
+  aux utilisateurs d'en enlever selectivement?
+* Devrait on faire plutot un dossier actions avec des jars chargés à chaud
+  et des actions détectées à la volée?
+  
+**Donc utiliser l'annotation ET l'interface permet d'avoir des parents communs
+entre actions qui ne seraient pas chargés comme des actions**
+
 
 Il faudra faire un projet dataprep-action-sdk qui contienne les classes
 de base des actions et qui aggrège toutes les dépendances disponibles
@@ -117,3 +133,5 @@ Cf [documentation du plugin archetypes]
 
 [documentation du plugin archetypes]: https://maven.apache.org/guides/introduction/introduction-to-archetypes.html "Introduction to archetypes"
 [TDP-823]: https://jira.talendforge.org/browse/TDP-823 "JIRA: remove ScopeCategory"
+[@Inherited]: https://docs.oracle.com/javase/8/docs/api/java/lang/annotation/Inherited.html
+[@Component]: https://docs.spring.io/spring/docs/current/javadoc-api/org/springframework/stereotype/Component.html
